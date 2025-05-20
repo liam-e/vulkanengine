@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Find dependencies
 find_package(Vulkan REQUIRED COMPONENTS glslc)
 find_package(glfw3 CONFIG REQUIRED)
-find_package(glm REQUIRED) # Added GLM dependency
+find_package(glm REQUIRED)
 
 # Shader compilation
 find_program(GLSLC glslc HINTS ${Vulkan_GLSLC_EXECUTABLE})
@@ -26,17 +26,20 @@ foreach(SHADER ${SHADER_SOURCES})
 endforeach()
 add_custom_target(Shaders ALL DEPENDS ${SHADER_OUTPUTS})
 
-# Add executable
 add_executable(MyVulkanEngine
         src/main.cpp
-        src/VulkanUtils.h
-        src/VulkanUtils.cpp
-        src/VulkanRenderer.h
-        src/VulkanRenderer.cpp
+        src/vulkan/VulkanUtils.h
+        src/vulkan/VulkanUtils.cpp
+        src/vulkan/VulkanRenderer.h
+        src/vulkan/VulkanRenderer.cpp
+        src/vulkan/VulkanInstance.cpp
+        src/vulkan/VulkanSwapchain.cpp
+        src/vulkan/VulkanPipeline.cpp
+        src/vulkan/VulkanCommands.cpp
 )
 add_dependencies(MyVulkanEngine Shaders)
 target_link_libraries(MyVulkanEngine PRIVATE Vulkan::Vulkan glfw glm::glm)
-target_include_directories(MyVulkanEngine PRIVATE src) # Ensure src is included
+target_include_directories(MyVulkanEngine PRIVATE src)
 
 # Build options
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
