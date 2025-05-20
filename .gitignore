@@ -1,0 +1,37 @@
+# Ignore CMake build directories
+cmake-build-debug/
+cmake-build-*/
+
+# Ignore compiled Vulkan shader files
+*.spv
+
+# Common C++ build artifacts
+*.o
+*.obj
+*.a
+*.lib
+*.exe
+*.pdb
+*.ilk
+*.so
+*.dylib
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+
+# IDE and editor files
+.idea/
+*.suo
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vscode/
+*.swp
+*~
+
+# Miscellaneous
+.DS_Store
+*.log
